@@ -19,7 +19,7 @@ interface Tarifa {
   id: string;
   paradaOrigenId: string;
   paradaDestinoId: string;
-  precio: number;
+  precioUSD: number;
   paradaDestino: { id: string; destino: { nombre: string } };
 }
 
@@ -158,7 +158,7 @@ export default function NuevaReservaEmpleadoPage() {
           {paradaOrigen && paradaDestino && (
             <p className="text-gray-500 text-sm mb-6">
               Tramo: <strong>{paradaNombre(paradaOrigen)} → {paradaNombre(paradaDestino)}</strong>
-              {tarifaSeleccionada && ` · $${Number(tarifaSeleccionada.precio).toLocaleString()}/pax`}
+              {tarifaSeleccionada && ` · $${Number(tarifaSeleccionada.precioUSD).toLocaleString()}/pax`}
             </p>
           )}
           <div className="flex gap-3">
@@ -341,7 +341,7 @@ export default function NuevaReservaEmpleadoPage() {
                           {paradaNombre(t.paradaDestino)}
                         </span>
                         <span className="text-sm font-bold text-[#0f1b2d]">
-                          ${Number(t.precio).toLocaleString()}
+                          ${Number(t.precioUSD).toLocaleString()}
                         </span>
                         {destinoId === t.paradaDestinoId && (
                           <span className="w-2 h-2 rounded-full bg-[#0f1b2d] flex-shrink-0" />
@@ -455,7 +455,7 @@ export default function NuevaReservaEmpleadoPage() {
                       </p>
                     </div>
                     <p className="text-sm font-bold text-[#0f1b2d] text-right">
-                      ${Number(tarifaSeleccionada.precio).toLocaleString()}/pax
+                      ${Number(tarifaSeleccionada.precioUSD).toLocaleString()}/pax
                     </p>
                   </div>
                 )}
@@ -507,7 +507,7 @@ export default function NuevaReservaEmpleadoPage() {
                     <p className="text-sm font-medium text-gray-700">Menores (4–9 años)</p>
                     <p className="text-xs text-gray-400">
                       {tarifaSeleccionada
-                        ? `$${Math.max(0, Number(tarifaSeleccionada.precio) - 10).toLocaleString()} USD (−$10)`
+                        ? `$${Math.max(0, Number(tarifaSeleccionada.precioUSD) - 10).toLocaleString()} USD (−$10)`
                         : '−$10 USD descuento'}
                     </p>
                   </div>
@@ -530,7 +530,7 @@ export default function NuevaReservaEmpleadoPage() {
                     <p className="text-sm font-medium text-gray-700">Bebés (&lt;3 años)</p>
                     <p className="text-xs text-gray-400">
                       {tarifaSeleccionada
-                        ? `$${(Number(tarifaSeleccionada.precio) * 0.5).toLocaleString()} USD (50% off)`
+                        ? `$${(Number(tarifaSeleccionada.precioUSD) * 0.5).toLocaleString()} USD (50% off)`
                         : '50% de descuento'}
                     </p>
                   </div>
@@ -549,7 +549,7 @@ export default function NuevaReservaEmpleadoPage() {
               </div>
 
               {tarifaSeleccionada && (form.adultos + form.menores9 + form.menores3) > 0 && (() => {
-                const precio = Number(tarifaSeleccionada.precio);
+                const precio = Number(tarifaSeleccionada.precioUSD);
                 const total =
                   form.adultos  * precio +
                   form.menores9 * Math.max(0, precio - 10) +
