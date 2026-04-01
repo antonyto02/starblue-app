@@ -2,25 +2,165 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1d1d1f;
+
+  /* ── Apple-style Admin Design System ── */
+  --admin-bg:              #f5f5f7;   /* Apple's signature off-white */
+  --admin-surface:         #ffffff;
+
+  /* Sidebar */
+  --admin-sidebar-bg:      #f5f5f7;   /* mismo gris que el fondo */
+  --admin-sidebar-border:  transparent;
+  --admin-sidebar-text:    #86868b;
+  --admin-sidebar-hover:   rgba(0,0,0,0.05);
+  --admin-sidebar-active:  #ffffff;   /* card blanca flotando */
+
+  /* Typography */
+  --admin-text-primary:    #1d1d1f;   /* Apple body text */
+  --admin-text-secondary:  #6e6e73;
+  --admin-text-tertiary:   #aeaeb2;
+
+  /* Borders */
+  --admin-border:          #d2d2d7;
+  --admin-border-light:    #f0f0f5;
+
+  /* Accent — used sparingly */
+  --admin-accent:          #0071e3;   /* Apple blue */
+  --admin-accent-hover:    #0077ed;
+  --admin-accent-subtle:   #e8f0fe;
+}
+
+/* ── Dark mode overrides (toggled via .admin-dark class) ── */
+.admin-dark {
+  --admin-bg:              #0d1220;   /* midnight blue-black */
+  --admin-surface:         #131d35;   /* blue-tinted surface  */
+
+  --admin-sidebar-bg:      #0b0f1c;   /* deepest blue-black   */
+  --admin-sidebar-border:  rgba(255,255,255,0.07);
+  --admin-sidebar-text:    rgba(255,255,255,0.45);
+  --admin-sidebar-hover:   rgba(255,255,255,0.06);
+  --admin-sidebar-active:  rgba(255,255,255,0.09);
+
+  --admin-text-primary:    #e8eaf6;
+  --admin-text-secondary:  #9ea3b8;
+  --admin-text-tertiary:   #5a6080;
+
+  --admin-border:          rgba(255,255,255,0.10);
+  --admin-border-light:    rgba(255,255,255,0.05);
+
+  --admin-accent:          #60a5fa;   /* blue-400 — pops nicely on dark blue */
+  --admin-accent-hover:    #93c5fd;
+  --admin-accent-subtle:   rgba(96,165,250,0.12);
+}
+
+/* ── Dark mode: remap hardcoded Tailwind colors inside .admin-dark ── */
+
+/* Backgrounds */
+.admin-dark .bg-white          { background-color: var(--admin-surface)              !important; }
+.admin-dark .bg-gray-50        { background-color: var(--admin-bg)                   !important; }
+.admin-dark .bg-gray-100       { background-color: rgba(255,255,255,0.06)            !important; }
+.admin-dark .bg-gray-200       { background-color: rgba(255,255,255,0.09)            !important; }
+
+/* Text */
+.admin-dark .text-gray-900,
+.admin-dark .text-gray-800     { color: var(--admin-text-primary)                    !important; }
+.admin-dark .text-gray-700,
+.admin-dark .text-gray-600     { color: var(--admin-text-secondary)                  !important; }
+.admin-dark .text-gray-500,
+.admin-dark .text-gray-400,
+.admin-dark .text-gray-300     { color: var(--admin-text-tertiary)                   !important; }
+
+/* Borders */
+.admin-dark .border-gray-100,
+.admin-dark .border-gray-200,
+.admin-dark .border-gray-300   { border-color: var(--admin-border)                   !important; }
+
+/* Divide (table rows, lists) */
+.admin-dark .divide-gray-100 > * + *,
+.admin-dark .divide-gray-200 > * + * { border-color: var(--admin-border)             !important; }
+
+/* Hover bg tweaks */
+.admin-dark .hover\:bg-gray-50:hover  { background-color: rgba(255,255,255,0.04)     !important; }
+.admin-dark .hover\:bg-gray-100:hover { background-color: rgba(255,255,255,0.06)     !important; }
+
+/* ── Status badge overrides ── */
+.admin-dark .bg-green-50,
+.admin-dark .bg-green-100      { background-color: rgba(34,197,94,0.12)              !important; }
+.admin-dark .text-green-700,
+.admin-dark .text-green-600    { color: #4ade80                                      !important; }
+.admin-dark .border-green-200  { border-color: rgba(34,197,94,0.25)                  !important; }
+
+.admin-dark .bg-amber-50,
+.admin-dark .bg-amber-100      { background-color: rgba(245,158,11,0.12)             !important; }
+.admin-dark .text-amber-700,
+.admin-dark .text-amber-600    { color: #fbbf24                                      !important; }
+.admin-dark .border-amber-200  { border-color: rgba(245,158,11,0.25)                 !important; }
+
+.admin-dark .bg-red-50,
+.admin-dark .bg-red-100        { background-color: rgba(239,68,68,0.12)              !important; }
+.admin-dark .text-red-700,
+.admin-dark .text-red-600      { color: #f87171                                      !important; }
+.admin-dark .border-red-200    { border-color: rgba(239,68,68,0.25)                  !important; }
+
+.admin-dark .bg-blue-50,
+.admin-dark .bg-blue-100       { background-color: rgba(96,165,250,0.12)             !important; }
+.admin-dark .text-blue-700,
+.admin-dark .text-blue-600     { color: #60a5fa                                      !important; }
+.admin-dark .border-blue-200   { border-color: rgba(96,165,250,0.25)                 !important; }
+
+.admin-dark .bg-purple-50,
+.admin-dark .bg-purple-100     { background-color: rgba(168,85,247,0.12)             !important; }
+.admin-dark .text-purple-700,
+.admin-dark .text-purple-600   { color: #c084fc                                      !important; }
+.admin-dark .border-purple-200 { border-color: rgba(168,85,247,0.25)                 !important; }
+
+.admin-dark .bg-rose-50,
+.admin-dark .bg-rose-100       { background-color: rgba(244,63,94,0.12)              !important; }
+.admin-dark .text-rose-700,
+.admin-dark .text-rose-600     { color: #fb7185                                      !important; }
+.admin-dark .border-rose-200   { border-color: rgba(244,63,94,0.25)                  !important; }
+
+/* ── Form inputs inside admin dark ── */
+.admin-dark input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+.admin-dark textarea,
+.admin-dark select {
+  background-color: var(--admin-bg)           !important;
+  color:            var(--admin-text-primary) !important;
+  border-color:     var(--admin-border)       !important;
+}
+.admin-dark input::placeholder,
+.admin-dark textarea::placeholder {
+  color: var(--admin-text-tertiary) !important;
+}
+.admin-dark input:focus,
+.admin-dark textarea:focus,
+.admin-dark select:focus {
+  outline-color: var(--admin-accent) !important;
+  border-color:  var(--admin-accent) !important;
+}
+
+/* Replace black hover overlay with white in dark (for arbitrary hover:bg-black/* classes) */
+.admin-dark [class*="hover:bg-black"]:hover {
+  background-color: rgba(255,255,255,0.04) !important;
+}
+
+/* ── Skeleton loaders in dark ── */
+.admin-dark .animate-pulse.bg-gray-100,
+.admin-dark .animate-pulse.bg-gray-200 {
+  background-color: rgba(255,255,255,0.06) !important;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
