@@ -62,6 +62,7 @@ interface Salida {
   fechaSalida: string;
   fechaRegreso: string;
   cupoTotal: number;
+  precio: number;
   ruta: {
     nombre: string;
     paradas: { orden: number; destino?: { nombre: string; imagenPortada: string | null; galeria: ImagenGaleria[] } }[];
