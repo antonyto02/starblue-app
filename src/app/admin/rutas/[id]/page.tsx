@@ -137,9 +137,10 @@ export default function EditarRutaPage() {
     e.preventDefault();
     setLoading(true);
     setError('');
+    const todasUSA = paradas.every(p => destinos.find(d => d.id === p.destinoId)?.pais === 'USA');
     for (let i = 0; i < paradas.length; i++) {
       const esUSA = destinos.find(d => d.id === paradas[i].destinoId)?.pais === 'USA';
-      if (esUSA && !paradas[i].precioUSD) {
+      if (esUSA && !paradas[i].precioUSD && !(todasUSA && i === 0)) {
         setError(`La parada ${i + 1} (USA) requiere precio en USD.`);
         setLoading(false);
         return;
@@ -369,7 +370,7 @@ export default function EditarRutaPage() {
                         </button>
                       )}
                     </div>
-                    {esUSA && (
+                    {esUSA && !(idx === 0 && paradas.every(p => (destinos.find(d => d.id === p.destinoId) ?? p.destino)?.pais === 'USA')) && (
                       <div className="flex items-center gap-3 mt-2.5 ml-12">
                         <div className="relative w-36">
                           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold" style={{ color: 'var(--admin-text-tertiary)' }}>$</span>
