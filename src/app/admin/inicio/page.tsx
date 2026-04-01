@@ -355,7 +355,7 @@ export default function AdminInicioPage() {
             <div>
               <div className="relative">
                 <BannerCarousel
-                  slides={sortedDestinos.map((sd) => ({ id: sd.id, ...sd.destino }))}
+                  slides={sortedDestinos.map((sd) => ({ ...sd.destino }))}
                   height="h-72"
                   autoplay
                   interval={4000}
