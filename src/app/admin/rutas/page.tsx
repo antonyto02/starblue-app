@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Plus, Route, Pencil, MoreHorizontal, Eye, EyeOff } from 'lucide-react';
+import { Plus, Route, Pencil, MoreHorizontal, Eye, EyeOff, Trash2 } from 'lucide-react';
 import api from '@/lib/api';
 
 interface RutaParada {
